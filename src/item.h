@@ -10,9 +10,6 @@
 #define ITEM_H
 
 #include <iomanip>
-// #include <iostream> // not needed for itemclass
-// #include <fstream> // not needed for itemclass
-// #include <cstdlib> // not needed for itemclass
 #include <sstream>
 #include <fstream>
 
@@ -40,7 +37,7 @@ class Itemclass
         std::string getName();                  // returns name of item
         std::string getType();                  // returns type of item
         // int getAttack();
-        // int getDefence();
+        // int getdefense();
         // int getProficiency();
         // int getProfLevel();
         int getHealing();                       // returns healing value
@@ -51,7 +48,7 @@ class Itemclass
         void setName(const std::string &newName);       // sets name of item
         void setType(const std::string &newType);       // sets type of item
         // void setAttack(const int &newAttack);
-        // void setDefence(const int &newDefence);
+        // void setdefense(const int &newdefense);
         // void setProficiency(const int &newProf);
         // void setProfLevel(const int &newPLevel);
         void setHealing(const int &newHealing);         // sets healing value
@@ -62,12 +59,12 @@ class Itemclass
         std::string name;       // name of item
         std::string type;       // type of item
         // int attack;
-        // int defence;
+        // int defense;
         // int proficiency;
         // int prof_level;
         int healing;            // amount item can be used to heal
 
-        int attribute;          // attribute attached to item (eg attack or defence or healing)
+        int attribute;          // attribute attached to item (eg attack or defense or healing)
 
     private:
         

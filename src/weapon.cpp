@@ -7,6 +7,18 @@ Weapon::Weapon() : Itemclass()
     profLevel = 0;
 }
 
+Weapon::Weapon(const std::string &name, const int &attack, const int &price) : Itemclass()
+{
+    type = "weapon";
+    proficiency = 0;
+    profLevel = 0;
+
+    this->name = name;
+    attribute = attack;
+    this->price = price;
+    set_sellprice();
+}
+
 Weapon::~Weapon()
 {
 

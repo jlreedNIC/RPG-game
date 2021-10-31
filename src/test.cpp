@@ -1,26 +1,35 @@
 #include "item.h"
 #include "weapon.h"
 #include "armor.h"
+#include "monster.h"
+#include "player.h"
 #include <iostream>
 
 void test(Itemclass &item);
 
 int main()
 {
-    std::cout << "hello\n";
-
     Itemclass item;
     Weapon myWeapon;
     Armor myArmor;
+    Monster myMonster;
+    Player myPlayer;
 
-    myWeapon.create("sword", 5, 20);
-    myArmor.create("hard leather", 15, 30);
+    myMonster.create("goblin", "fighter", 3);
+    std::cout << myMonster.printStats();
+    myPlayer.create("elf", "wizard", 5);
+    std::cout << myPlayer.printStats();
 
-    test(item);
+    myPlayer.addQuest("Help people in the mine.");
+    myPlayer.addQuest("Get the key from the mayor.");
+    std::cout << myPlayer.printQuests();
 
-    std::cout << myWeapon.print();
-    std::cout << myArmor.print();
-    std::cout << item.print();
+    myPlayer.addWeapon("sword", 5, 15);
+    myPlayer.addWeapon("staff", 5, 13);
+
+    myPlayer.setEquipped(0);
+
+    std::cout << myPlayer.printInventory();
 
     return 0;
 }

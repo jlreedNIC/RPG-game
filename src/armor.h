@@ -19,19 +19,19 @@ class Armor : public Itemclass
         ~Armor();       // destructor
 
         virtual std::string print();                    // outputs information for armor into a string
-        virtual void create(const std::string &name, const int &defence, const int &price);     // creates armor with given parameters
+        virtual void create(const std::string &name, const int &defense, const int &price);     // creates armor with given parameters
         virtual void load(std::fstream &ifs);           // loads armor info from file
         virtual void save(std::fstream &ofs);           // saves armor info to file
 
-        int getDefence();                               // returns defence value
-        void setDefence(const int &defence);            // sets defence value
+        int getdefense();                               // returns defense value
+        void setdefense(const int &defense);            // sets defense value
 
         int getProficiency();                           // gets proficiency info
         int getProfLevel();                             // gets proficiency level
         void setProficiency(const int &proficiency);    // sets proficiency value
         void setProfLevel(const int &profLevel);        // sets proficiency level
 
-        void incDefense(const int &defence);            // increases defence value by given parameter
+        void incDefense(const int &defense);            // increases defense value by given parameter
         void incProficiency(const int &prof);           // increases proficiency value by given parameter
 
     private:

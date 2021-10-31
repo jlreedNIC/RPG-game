@@ -22,7 +22,7 @@ class Hero
         Armor armor[5];
         Itemclass item[9];
         string equipped_weapon, equipped_armor;
-        int equipped_attack, equipped_defence, equipped_proficiency, equipped_prof_level;
+        int equipped_attack, equipped_defense, equipped_proficiency, equipped_prof_level;
         string quest[3];
         string quest_check;
         string save_point;

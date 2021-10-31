@@ -30,7 +30,7 @@ void Enemy::stats()
 {
     experience = level*5;
     attack = level*2;
-    defence = (level-1)/1.5;
+    defense = (level-1)/1.5;
     gold = 10 + (level*2);
 }
 

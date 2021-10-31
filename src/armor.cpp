@@ -21,11 +21,11 @@ std::string Armor::print()
     return ostr.str();
 }
 
-void Armor::create(const std::string &name, const int &defence, const int &price)
+void Armor::create(const std::string &name, const int &defense, const int &price)
 {
     this->name = name;
     this->price = price;
-    attribute = defence;   
+    attribute = defense;   
 }
 
 void Armor::load(std::fstream &ifs)
@@ -38,14 +38,14 @@ void Armor::save(std::fstream &ofs)
     ofs << type << " " << name << " " << attribute << " " << proficiency << " " << profLevel << " " << price << " " << sell_price << "\n";
 }
 
-int Armor::getDefence()
+int Armor::getdefense()
 {
     return attribute;
 }
 
-void Armor::setDefence(const int &defence)
+void Armor::setdefense(const int &defense)
 {
-    attribute = defence;
+    attribute = defense;
 }
 
 int Armor::getProficiency()
@@ -68,9 +68,9 @@ void Armor::setProfLevel(const int &profLevel)
     this->profLevel = profLevel;
 }
 
-void Armor::incDefense(const int &defence)
+void Armor::incDefense(const int &defense)
 {
-    attribute += defence;
+    attribute += defense;
 }
 
 void Armor::incProficiency(const int &prof)

@@ -7,6 +7,7 @@ class Weapon : public Itemclass
 {
     public:
         Weapon();
+        Weapon(const std::string &name, const int &attack, const int &price);
         ~Weapon();
 
         virtual std::string print();

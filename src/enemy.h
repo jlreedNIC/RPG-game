@@ -11,7 +11,7 @@ class Enemy
         int health, max_health;
         int level, experience;
         int gold;
-        int attack, defence;
+        int attack, defense;
         string name;
 
         void stats();

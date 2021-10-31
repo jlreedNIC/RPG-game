@@ -19,6 +19,7 @@ Hero::Hero()
                 cout << "What will your character's name be?" << endl;
                 cin >> name;
 
+                // gender
                 do
                 {
                     cout << "Are you a boy or a girl?" << endl;
@@ -39,6 +40,7 @@ Hero::Hero()
                     }
                 }while(choice3 == '0');
 
+                // profession/class
                 do
                 {
                     cout << "\nWhat is your profession?" << endl;
@@ -155,7 +157,7 @@ Hero::Hero()
                 equipped_proficiency = weapon[0].getProficiency();
                 equipped_prof_level = weapon[0].getProfLevel();
                 equipped_armor = armor[0].getName();
-                equipped_defence = armor[0].getDefence();
+                equipped_defense = armor[0].getdefense();
 
                 magic = 0;
                 magic_experience = 0;
@@ -183,7 +185,7 @@ Hero::Hero()
                 cout << "What is your character's name?" << endl;
                 cin >> name;
                 fstream ifs;
-                ifs.open(name.c_str(), ios::in);
+                ifs.open("saves/" + name + ".txt", ios::in);
                 if(ifs.fail())
                 {
                     cout << "\nerror getting file" << endl;
@@ -192,22 +194,16 @@ Hero::Hero()
 
                 ifs >> save_point >> name >> gender >> race >> trade >> health >> max_health >> level >> experience >> gold;
                 ifs >> strength >> constitution >> magicstat;
-                ifs >> equipped_weapon >> equipped_attack >> equipped_proficiency >> equipped_prof_level >> equipped_armor >> equipped_defence;
+                ifs >> equipped_weapon >> equipped_attack >> equipped_proficiency >> equipped_prof_level >> equipped_armor >> equipped_defense;
                 for(i=0; i<5; i++)
                     weapon[i].load(ifs);
-                // for(i=0; i<5; i++)
-                //     ifs >> weapon[i].getType() >> weapon[i].getName() >> weapon[i].getAttack() >> weapon[i].getProficiency() >> weapon[i].getProfLevel() >> weapon[i].getPrice() >> weapon[i].getSellPrice();
                 for(i=0; i<5; i++)
                     armor[i].load(ifs);
-                // for(i=0; i<5; i++)
-                //     ifs >> armor[i].getType() >> armor[i].getName() >> armor[i].getDefence() >> armor[i].getProficiency() >> armor[i].getProfLevel() >> armor[i].getPrice() >> armor[i].getSellPrice();
                 ifs >> magic >> magic_experience;
                 for(i=0; i<5; i++)
                     ifs >> spell[i] >> damage[i];
                 for(i=0; i<9; i++)
                     item[i].load(ifs);
-                // for(i=0; i<9; i++)
-                //     ifs >> item[i].getType() >> item[i].getName() >> item[i].getPrice() >> item[i].getSellPrice() >> item[i].getHealing();
                 ifs >> cityname;
                 ifs >> quest[0] >> quest[1] >> quest[2] >> quest_check;
                 ifs >> time >> x >> y >> mine_room;
@@ -242,18 +238,18 @@ void Hero::save()
             if(city[i][j] == ' ') city[i][j] = '*';
 
     cout << "\nSaving..." << endl;
-    fstream ofs(name, ios::out);
+    fstream ofs("saves/" + name + ".txt", ios::out);
     if(!ofs) cout << "error opening file\n";
     ofs << save_point << endl << name << endl << gender << endl << race << endl << trade << endl << health << " " << max_health << endl << level << endl << experience << endl << gold << endl << endl;
     ofs << strength << endl << constitution << endl << magicstat << endl << endl;
-    ofs << equipped_weapon << " " << equipped_attack << " " << equipped_proficiency << " " << equipped_prof_level << endl << equipped_armor << " " << equipped_defence << endl << endl;
+    ofs << equipped_weapon << " " << equipped_attack << " " << equipped_proficiency << " " << equipped_prof_level << endl << equipped_armor << " " << equipped_defense << endl << endl;
     for(i=0; i<5; i++)
         weapon[i].save(ofs);
         // ofs << weapon[i].getType() << " " << weapon[i].getName() << " " << weapon[i].getAttack() << " " << weapon[i].getProficiency() << " " << weapon[i].getProfLevel() << " " << weapon[i].getPrice() << " " << weapon[i].getSellPrice() << "\n";
     ofs << endl;
     for(i=0; i<5; i++)
         armor[i].save(ofs);
-        // ofs << armor[i].getType() << " " << armor[i].getName() << " " << armor[i].getDefence() << " " << armor[i].getProficiency() << " " << armor[i].getProfLevel() << " " << armor[i].getPrice() << " " << armor[i].getSellPrice() << "\n";
+        // ofs << armor[i].getType() << " " << armor[i].getName() << " " << armor[i].getdefense() << " " << armor[i].getProficiency() << " " << armor[i].getProfLevel() << " " << armor[i].getPrice() << " " << armor[i].getSellPrice() << "\n";
     ofs << endl;
     ofs << magic << endl << magic_experience << endl;
     for(i=0; i<5; i++)
@@ -317,7 +313,7 @@ void Hero::print_inventory()
                         if(weapon[i].getName() != "none") weapon[i].print();
                     break;
             case 3:
-                    cout << setw(13) << "Armor" << setw(9) << "Defence" << setw(6) << "Price" << endl;
+                    cout << setw(13) << "Armor" << setw(9) << "defense" << setw(6) << "Price" << endl;
                     cout << setw(13) << "-----" << setw(9) << "-------" << setw(6) << "-----" << endl;
                     for(i=0; i<5; i++)
                         if(armor[i].getName() != "none") armor[i].print();
@@ -440,7 +436,7 @@ void Hero::equip()
                         cout << "This is the armor you have: " << endl;
                         for(i=0; i<3; i++)
                         {
-                            if(armor[i].getName() != "none") cout << setw(13) << armor[i].getName() << setw(4) << armor[i].getDefence() << endl;
+                            if(armor[i].getName() != "none") cout << setw(13) << armor[i].getName() << setw(4) << armor[i].getdefense() << endl;
                         }
                         cin >> answer2;
                         do
@@ -465,7 +461,7 @@ void Hero::equip()
                             if(armor[i].getName() == answer2)
                             {
                                 equipped_armor = armor[i].getName();
-                                equipped_defence = armor[i].getDefence();
+                                equipped_defense = armor[i].getdefense();
                             }
                         }
                         if(equipped_armor != answer2) cout << "You don't have " << answer2 << " armor!" << endl;
@@ -526,7 +522,7 @@ void Hero::statprint()
     cout << setw(15) << "Experience:" << "    " << experience << endl;
     cout << setw(15) << "Attack:" << "    " << equipped_attack << endl;
     cout << setw(15) << "Proficiency:" << "    " << equipped_prof_level << endl;
-    if(equipped_armor != "none") cout << setw(15) << "Defence:" << "    " << equipped_defence << endl;
+    if(equipped_armor != "none") cout << setw(15) << "defense:" << "    " << equipped_defense << endl;
     cout << setw(15) << "Magic:" << "    " << magic << endl;
     cout << endl << setw(15) << "Strength:" << "    " << strength << endl;
     cout << setw(15) << "Constitution:" << "    " << constitution << endl;
@@ -833,7 +829,7 @@ void Hero::shop_armor()
                 case 1:
                         //buying
                         cout << "\nThis is what I currently have: " << endl;
-                        cout << " (1) Leather armor           10 gold  5 defence\n (2) Hardened leather armor  20 gold  10 defence \n (3) Steel armor             50 gold  17 defence \n\n (0) Exit" << endl;
+                        cout << " (1) Leather armor           10 gold  5 defense\n (2) Hardened leather armor  20 gold  10 defense \n (3) Steel armor             50 gold  17 defense \n\n (0) Exit" << endl;
                         cin >> choice2;
                         switch(choice2)
                         {
@@ -1345,9 +1341,9 @@ int Hero::train(string monster, string place)
                     break;
             case 1:
                     //attack
-                    temp_attack = equipped_attack + (rand()%7) - enemy.defence;
+                    temp_attack = equipped_attack + (rand()%7) - enemy.defense;
                     if(temp_attack <0) temp_attack = 0;
-                    enemyattack1 = enemy.attack + (rand()%5) - equipped_defence;
+                    enemyattack1 = enemy.attack + (rand()%5) - equipped_defense;
                     if(enemyattack1 < 0) enemyattack1 = 0;
 
                     cout << "\nYou swing your " << equipped_weapon << " at the " << enemy.name << ", dealing " << temp_attack << " damage." << endl;
@@ -1376,9 +1372,9 @@ int Hero::train(string monster, string place)
                         if(answer == spell[j] && spell[j] != "none") break;
                     if(spell[j] != "none")
                     {
-                        temp_attack = damage[j] + (rand()%5) - enemy.defence;
+                        temp_attack = damage[j] + (rand()%5) - enemy.defense;
                         if(temp_attack <0) temp_attack = 1;
-                        enemyattack1 = enemy.attack + (rand()%5) - equipped_defence;
+                        enemyattack1 = enemy.attack + (rand()%5) - equipped_defense;
                         if(enemyattack1 < 0) enemyattack1 = 0;
 
                         cout << name << " casts a " << spell[j] << " spell at the " << enemy.name << ", dealing " << temp_attack << " damage." << endl;
@@ -2041,7 +2037,7 @@ void Hero::fight_player()
             if(choice > 5) cout << "Please pick another choice" << endl;
             if(choice == 1)
             {
-                temp_attack = equipped_attack + (rand()%7) - player2.equipped_defence;
+                temp_attack = equipped_attack + (rand()%7) - player2.equipped_defense;
                 if(temp_attack < 0) temp_attack = 0;
 
                 cout << endl << name << " lunges at " << player2.name << ", dealing " << temp_attack << " damage." << endl;
@@ -2066,7 +2062,7 @@ void Hero::fight_player()
                 for(k=0; k<5; k++)
                     if(answer == spell[k]) break;
 
-                temp_attack = damage[k] + (rand()%5) - player2.equipped_defence;
+                temp_attack = damage[k] + (rand()%5) - player2.equipped_defense;
 
                 if(temp_attack <0) temp_attack = 1;
 
@@ -2097,7 +2093,7 @@ void Hero::fight_player()
             if(choice2 > 5) cout << "Please pick another choice" << endl;
             if(choice2 == 1)
             {
-                player2temp_attack = player2.equipped_attack + (rand()%7) - equipped_defence;
+                player2temp_attack = player2.equipped_attack + (rand()%7) - equipped_defense;
                 if(player2temp_attack < 0) player2temp_attack = 0;
 
                 cout << endl << player2.name << " lunges at " << name << ", dealing " << player2temp_attack << " damage." << endl;
@@ -2122,7 +2118,7 @@ void Hero::fight_player()
                 for(j=0; j<5; j++)
                     if(answer == player2.spell[j]) break;
 
-                player2temp_attack = player2.damage[j] + (rand()%5) - equipped_defence;
+                player2temp_attack = player2.damage[j] + (rand()%5) - equipped_defense;
                 if(player2temp_attack <0) player2temp_attack = 1;
 
                 cout << player2.name << " casts a " << player2.spell[j] << " spell at " << name << ", dealing " << player2temp_attack << " damage." << endl;
