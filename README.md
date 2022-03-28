@@ -6,3 +6,5 @@ This is a text based rpg that I started creating in my very first year in colleg
 
 ## Status
 In development.
+
+### Testing
